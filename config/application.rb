@@ -30,5 +30,21 @@ module Blocmetrics
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Do not generate test files
+    config.generators do |g|
+      g.test_framework false
+    end
+
+    config.app_generators.javascript_engine = :js
+
+    #
+    config.action_dispatch.default_headers = {
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS',
+        'Access-Control-Allow-Headers' => 'Content-Type',
+        'Access-Control-Max-Age' => '1728000'
+    }
+
   end
 end
