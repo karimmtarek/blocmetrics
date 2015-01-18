@@ -3,10 +3,10 @@
     %li
       = event.name
       %br
-      = event.tag_name
-      %br
-      = event.action
-      %br
-      = event.referrer
-      %br
       = event.created_at
+      - if event.properties.any?
+        %br
+        %strong Properies:
+        %ul
+          - event.properties.each do |property|
+            %li= "#{property.key}: #{property.value}"

@@ -45,6 +45,5 @@ module Blocmetrics
         'Access-Control-Allow-Headers' => 'Content-Type',
         'Access-Control-Max-Age' => '1728000'
     }
-
   end
 end

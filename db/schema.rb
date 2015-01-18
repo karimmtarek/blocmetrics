@@ -11,15 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116040755) do
+ActiveRecord::Schema.define(version: 20150118005244) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.string   "tag_name"
-    t.string   "action"
-    t.string   "referrer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string   "key"
+    t.string   "value"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "properties", ["event_id"], name: "index_properties_on_event_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

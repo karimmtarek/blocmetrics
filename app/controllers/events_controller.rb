@@ -14,15 +14,17 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      respond_to do |format|
-        format.json { render :json => @event }
-      end
+      head :created
+      # render :json => @event, :status => :created
+    else
+      render :json => @event.errors, :status => :bad_request
     end
+
   end
 
 private
 
   def event_params
-    params.require(:event).permit(:name, :tag_name, :action, :referrer)
+    params.require(:event).permit(:name)
   end
 end
