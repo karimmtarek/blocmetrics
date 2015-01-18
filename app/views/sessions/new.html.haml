@@ -1,0 +1,6 @@
+= form_tag(session_path) do
+  = label_tag :email
+  = email_field_tag :email, nil, autofocus: true
+  = label_tag :password
+  = password_field_tag :password, nil
+  = submit_tag "Sign In"
