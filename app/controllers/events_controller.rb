@@ -12,6 +12,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    properties = properties_params.map {|props| Property.new(props)}
+    @event.properties = properties
 
     if @event.save
       head :created
@@ -26,5 +28,9 @@ private
 
   def event_params
     params.require(:event).permit(:name)
+  end
+
+  def properties_params
+    params.require(:properties).values
   end
 end
