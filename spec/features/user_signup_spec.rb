@@ -9,7 +9,7 @@ describe "A user" do
 
     click_on 'Create User'
 
-    expect(page.current_url).to eq(root_url)
+    expect(page.current_url).to eq(users_url)
     expect(page).to have_content('Thanks for signing up.')
   end
 end
