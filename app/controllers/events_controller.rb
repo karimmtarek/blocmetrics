@@ -15,6 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    # @event.created_on = Date.today
     properties = properties_params.map {|props| Property.new(props)}
     @event.properties = properties
 
@@ -29,7 +30,7 @@ class EventsController < ApplicationController
 private
 
   def event_params
-    params.require(:event).permit(:name)
+    params.require(:event).permit(:name, :created_on)
   end
 
   def properties_params

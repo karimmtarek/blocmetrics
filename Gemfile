@@ -45,6 +45,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pry-rails'
 
+gem "chartkick"
+# gem 'groupdate' # it doesn't work with sqlite
 
 # Use Unicorn as the app server
 # gem 'unicorn'

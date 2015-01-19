@@ -1,12 +1,15 @@
-%ul
-  - @events.each do |event|
-    %li
-      = event.name
-      %br
-      = event.created_at
-      - if event.properties.any?
-        %br
-        %strong Properies:
-        %ul
-          - event.properties.each do |property|
-            %li= "#{property.key}: #{property.value}"
+-# %ul
+-#   - @events.each do |event|
+-#     %li
+-#       = event.name
+-#       %br
+-#       = event.created_at
+-#       - if event.properties.any?
+-#         %br
+-#         %strong Properies:
+-#         %ul
+-#           - event.properties.each do |property|
+-#             %li= "#{property.key}: #{property.value}"
+- from = 5.days.ago
+- to = Date.today
+= line_chart Event.group(:created_on).where('created_on >= ?', from).where('created_on <= ?', to).count
