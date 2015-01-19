@@ -1,9 +1,12 @@
 class EventsController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  respond_to :json
+  respond_to :html, :json
 
   def index
     @events = Event.all
+    respond_with(@events) do |format|
+      format.json {render :json => @events}
+    end
   end
 
   def new
@@ -21,7 +24,6 @@ class EventsController < ApplicationController
     else
       render :json => @event.errors, :status => :bad_request
     end
-
   end
 
 private

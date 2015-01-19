@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+(1..10).each do
+  event = Event.new(name: Faker::Internet.slug)
+  event.properties.new(key: Faker::Lorem.word, value: Faker::Lorem.word)
+  event.save!
+end
