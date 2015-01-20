@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120023811) do
+ActiveRecord::Schema.define(version: 20150120204423) do
+
+  create_table "domains", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "domains", ["user_id"], name: "index_domains_on_user_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150120023811) do
     t.datetime "updated_at", null: false
     t.date     "created_on"
     t.integer  "user_id"
+    t.string   "source_url"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"

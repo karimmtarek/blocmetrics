@@ -25,4 +25,10 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user?
+
+  def domain_belongs_to_user?(user, event)
+    user.domains.any? { |domain| domain.url == event.source_url }
+  end
+
+  helper_method :domain_belongs_to_user?
 end

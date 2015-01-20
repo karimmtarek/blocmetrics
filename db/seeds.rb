@@ -8,12 +8,13 @@
 
 (1..3).each do
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+  user.domains.new(url: Faker::Internet.domain_name)
   user.save
 end
 
 (1..30).each do
   user = User.find(rand(1..3))
-  event = user.events.new(name: Faker::Internet.slug)
+  event = user.events.new(name: Faker::Internet.slug, source_url: user.domains.first.url)
   event.properties.new(key: Faker::Lorem.word, value: Faker::Lorem.word)
   event.save!
 end
