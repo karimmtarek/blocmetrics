@@ -59,6 +59,7 @@ gem 'haml'
 gem 'simple_form'
 gem 'faker'
 gem 'responders', '~> 2.0'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem "better_errors"

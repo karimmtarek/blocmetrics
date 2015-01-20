@@ -10,7 +10,7 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <% if current_user %>
-    <%= current_user.email %> | <%= link_to 'Setting', edit_user_path(@user) %> | <%= link_to 'Log Out', session_path, method: :delete %>
+    <%= current_user.email %> | <%= link_to 'Setting', edit_user_path(current_user) %> | <%= link_to 'Log Out', session_path, method: :delete %>
   <% else %>
     <%= link_to 'Log In', new_session_path %>
   <% end %>

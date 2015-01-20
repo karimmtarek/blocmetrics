@@ -6,8 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-(1..10).each do
-  event = Event.new(name: Faker::Internet.slug)
+(1..3).each do
+  user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+  user.save
+end
+
+(1..30).each do
+  user = User.find(rand(1..3))
+  event = user.events.new(name: Faker::Internet.slug)
   event.properties.new(key: Faker::Lorem.word, value: Faker::Lorem.word)
   event.save!
 end

@@ -1,6 +1,10 @@
-%ul
+%h1= current_user.email
+%ol
   - @events.each do |event|
     %li
+      User:
+      = get_user(event)
+      %br
       = event.name
       %br
       = event.created_at
@@ -10,3 +14,4 @@
         %ul
           - event.properties.each do |property|
             %li= "#{property.key}: #{property.value}"
+= will_paginate @events

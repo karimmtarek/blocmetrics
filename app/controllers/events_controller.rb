@@ -2,8 +2,10 @@ class EventsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   respond_to :html, :json
 
+  before_action :require_signin, only: [:index]
+
   def index
-    @events = Event.all
+    @events = Event.all.where('user_id = ?', current_user.id).paginate(:page => params[:page], :per_page => 10)
     respond_with(@events) do |format|
       format.json {render :json => @events}
     end
