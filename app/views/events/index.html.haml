@@ -2,7 +2,7 @@
 -# %h3= current_user.domains.first.url
 %hr
 %ol
-  - @user_events.each do |event|
+  - @events.each do |event|
     %li
       %strong Source:
       = event.source_url

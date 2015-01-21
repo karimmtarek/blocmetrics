@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  created_on :date
+#  user_id    :integer
+#  source_url :string
+#
+
 require 'rails_helper'
 
 describe "An Event" do

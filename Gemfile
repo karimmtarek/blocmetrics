@@ -60,9 +60,12 @@ gem 'simple_form'
 gem 'faker'
 gem 'responders', '~> 2.0'
 gem 'will_paginate', '~> 3.0.6'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'annotate', '~> 2.6.5'
 
 group :development do
   gem "better_errors"
+  gem 'quiet_assets'
   gem 'guard-livereload', require: false
 end
 
