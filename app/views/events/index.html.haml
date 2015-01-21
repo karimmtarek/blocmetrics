@@ -1,6 +1,10 @@
 -# %h1= current_user.email
 -# %h3= current_user.domains.first.url
 %hr
+- from = 5.days.ago
+- to = Date.today
+= line_chart Event.group(:created_on).where('created_on >= ?', from).where('created_on <= ?', to).count
+%hr
 %ol
   - @events.each do |event|
     %li
@@ -18,3 +22,4 @@
       %hr
 
 -# = will_paginate @user_events
+
