@@ -3,7 +3,10 @@
 %hr
 - from = 5.days.ago
 - to = Date.today
-= line_chart Event.group(:created_on).where('created_on >= ?', from).where('created_on <= ?', to).count
+= line_chart Event.group(:created_on).count
+-# = line_chart Event.group(:created_on).where('created_on >= ?', from).where('created_on <= ?', to).count
+%hr
+= will_paginate @events
 %hr
 %ol
   - @events.each do |event|
@@ -21,5 +24,5 @@
             %li= "#{property.key}: #{property.value}"
       %hr
 
--# = will_paginate @user_events
+= will_paginate @events
 

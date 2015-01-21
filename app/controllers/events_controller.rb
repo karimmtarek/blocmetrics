@@ -5,13 +5,11 @@ class EventsController < ApplicationController
   before_action :require_signin, only: [:index]
 
   def index
-    @events = Event.user_events(current_user)
+    @events = Event.user_events(current_user).paginate(:page => params[:page], :per_page => 10)
     # @user_events = []
     # @events.each do |event|
     #   @user_events << event if domain_belongs_to_user?(current_user, event)
     # end
-    # binding.pry
-    # @user_events.paginate(:page => params[:page], :per_page => 10)
     respond_with(@events) do |format|
       format.json {render :json => @events}
     end
@@ -26,7 +24,7 @@ class EventsController < ApplicationController
     user = User.find(domain[0].user_id)
     @event = user.events.new(event_params)
     # binding.pry
-    # @event.created_on = Date.today
+    @event.created_on = Date.today
     properties = properties_params.map {|props| Property.new(props)}
     @event.properties = properties
 
