@@ -22,11 +22,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    # @domain = Domain.where(url: params[:event][:source_url])
-    # binding.pry
-    # @user = User.find(@domain.user_id)
+    domain = Domain.where(url: params[:event][:source_url])
+    user = User.find(domain[0].user_id)
 
-    @event = Event.new(event_params)
+    @event = user.events.new(event_params)
+    # binding.pry
     properties = properties_params.map {|props| Property.new(props)}
     @event.properties = properties
 
