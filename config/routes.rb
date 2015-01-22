@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root "events#index"
 
   resources :events
+  resources :domains
   resources :users
   resource :session
+
   get 'signin' => 'sessions#new', as: 'signin'
   get 'dashboard' => 'events#index', as: 'dashboard'
 

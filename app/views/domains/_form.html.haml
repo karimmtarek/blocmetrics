@@ -1,0 +1,6 @@
+= simple_form_for @domain do |f|
+  - if @domain.errors.any?
+    - @domain.errors.full_messages.each do |error|
+      = error
+  = f.input :url
+  = f.button :submit

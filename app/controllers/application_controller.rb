@@ -31,4 +31,14 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :domain_belongs_to_user?
+
+  def require_correct_user
+    @user = User.find(params[:id])
+    unless current_user?(@user)
+      redirect_to root_path
+    end
+  end
+
+  helper_method :require_correct_user
+
 end

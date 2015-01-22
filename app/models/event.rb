@@ -17,9 +17,16 @@ class Event < ActiveRecord::Base
 
   validates :name, presence: true, length: { minimum: 5 }
 
+  before_create :set_created_on
+
   def self.user_events(user)
     all.where("User_id = ?", user.id)
   end
 
+  private
+
+  def set_created_on
+    self.created_on = Date.today
+  end
 
 end

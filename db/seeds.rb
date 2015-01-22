@@ -6,17 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-domains = ['karim.com', '0.0.0.0', 'example.com']
-
-(1..3).each do
-  user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
-  user.domains.new(url: domains[rand(0..2)])
+(1..3).each do |n|
+  user = User.new(email: "user#{n}@gmail.com", password: 'password', password_confirmation: 'password')
+  user.domains.new(url: "user#{n}.com")
   user.save
 end
 
 (1..100).each do
   user = User.find(rand(1..3))
   event = user.events.new(name: Faker::Internet.slug, created_on: Faker::Date.between(30.days.ago, Date.today))
+  event.source_url = user.domains.first.url
   event.properties.new(key: Faker::Lorem.word, value: Faker::Lorem.word)
   event.save!
 end
