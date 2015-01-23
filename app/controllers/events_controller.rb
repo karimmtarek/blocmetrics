@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     # from = 15.days.ago
     # to = Date.today
     event_name = params[:event_name]
-    @init_date_from = 22.days.ago
+    @init_date_from = 1.days.ago
     @init_date_to = Date.today
 
     # binding.pry
@@ -24,7 +24,8 @@ class EventsController < ApplicationController
       @chart = @events.group(:created_on)
                       .where(name: event_name)
                       .where('created_on >= ?', @date_from)
-                      .where('created_on <= ?', @date_to).count
+                      .where('created_on <= ?', @date_to)
+                      .count
     end
 
   end

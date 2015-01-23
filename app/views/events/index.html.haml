@@ -25,6 +25,10 @@
   %div
     = submit_tag "Update Chart"
 
+= pie_chart Event.group(:name).count
+
+= line_chart Event.group(:name).group(:created_on).count
+
 - unless params[:event_name].nil?
   = line_chart @chart
 
