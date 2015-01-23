@@ -1,31 +1,54 @@
 -# %h1= current_user.email
 -# %h3= current_user.domains.first.url
 %hr
-- from = 5.days.ago
-- to = Date.today
-= line_chart Event.group(:created_on).count
--# = line_chart Event.group(:created_on).where('created_on >= ?', from).where('created_on <= ?', to).count
-%hr
-= will_paginate @events
-%hr
-%ol
-  - @events.each do |event|
-    %li
-      %strong Source:
-      = event.source_url
-      %br
-      %strong Name:
-      = event.name
-      %br
-      %strong Created on:
-      = event.created_on
-      - if event.properties.any?
-        %br
-        %strong Properies:
-        %ul
-          - event.properties.each do |property|
-            %li= "#{property.key}: #{property.value}"
-      %hr
+-# - from = 5.days.ago
+-# - to = Date.today
+-# = line_chart Event.group(:created_on).count
 
-= will_paginate @events
+= form_tag(events_path, {method: :get}) do
+  %div
+    = label_tag :event_name
+    = select_tag :event_name, options_from_collection_for_select(@events, "name", "name", :selected => params[:event_name]), prompt: "Choose an event", required: true
+  -# = select_tag :date_range, options_for_select(Event::DATE_RANGE), prompt: "Pick one"
+  %div
+    = label_tag :date_start
+    - if params[:date_start].nil?
+      = select_date @init_date_from, prefix: :date_start
+    - else
+      = select_date @date_from, prefix: :date_start
+  %div
+    = label_tag :date_end
+    - if params[:date_end].nil?
+      = select_date @init_date_to, prefix: :date_end
+    - else
+      = select_date @date_to, prefix: :date_end
+  %div
+    = submit_tag "Update Chart"
+
+- unless params[:event_name].nil?
+  = line_chart @chart
+
+-# %hr
+-# = will_paginate @events
+-# %hr
+-# %ol
+-#   - @events.each do |event|
+-#     %li
+-#       %strong Source:
+-#       = event.source_url
+-#       %br
+-#       %strong Name:
+-#       = event.name
+-#       %br
+-#       %strong Created on:
+-#       = event.created_on
+-#       - if event.properties.any?
+-#         %br
+-#         %strong Properies:
+-#         %ul
+-#           - event.properties.each do |property|
+-#             %li= "#{property.key}: #{property.value}"
+-#       %hr
+
+-# = will_paginate @events
 

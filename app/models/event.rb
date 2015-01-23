@@ -19,9 +19,16 @@ class Event < ActiveRecord::Base
 
   before_create :set_created_on
 
-  def self.user_events(user)
-    all.where("User_id = ?", user.id)
-  end
+  DATE_RANGE = [
+    'Today',
+    'Yesterday',
+    'Last week',
+    'Last month',
+    'Last 3 month',
+    'Last 6 month',
+    'Last 9 month',
+    'Last year'
+  ]
 
   private
 
