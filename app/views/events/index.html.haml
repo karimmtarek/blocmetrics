@@ -5,7 +5,7 @@
 = form_tag(events_path, {method: :get}) do
   %div
     = label_tag :event_name
-    = select_tag :event_name, options_from_collection_for_select(@events, "name", "name", :selected => params[:event_name]), prompt: "Choose an event", required: true
+    = select_tag :event_name, options_from_collection_for_select(@event_names, "name", "name", :selected => params[:event_name]), prompt: "Choose an event", required: true
   -# = select_tag :date_range, options_for_select(Event::DATE_RANGE), prompt: "Pick one"
   %div
     = label_tag :date_start
