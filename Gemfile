@@ -75,6 +75,9 @@ group :test do
 end
 
 group :development, :test do
+  # Tiny, fast & funny HTTP server
+  gem 'thin'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -89,4 +92,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
+  gem 'unicorn'
 end
