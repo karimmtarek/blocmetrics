@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     domain = Domain.where(url: params[:event][:source_url])
     user = User.find(domain[0].user_id)
     @event = user.events.new(event_params)
-    properties = params[:event][:properties].map {|k,v| Property.new(key: k, value: v) }
+    properties = params[:event][:properties].map { |k,v| Property.new(key: k, value: v) }
 
     @event.properties = properties
 

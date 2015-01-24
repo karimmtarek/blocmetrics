@@ -4,9 +4,6 @@ ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use bootstrap framework
 gem 'bootstrap-sass'
 
@@ -66,9 +63,15 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'annotate', '~> 2.6.5'
 
 group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
   gem "better_errors"
   gem 'quiet_assets'
   gem 'guard-livereload', require: false
+end
+
+group :test do
+  gem 'capybara'
 end
 
 group :development, :test do
@@ -84,6 +87,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 
-group :test do
-  gem 'capybara'
+group :production do
+  gem 'pg'
 end
