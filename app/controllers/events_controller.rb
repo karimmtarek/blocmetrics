@@ -5,9 +5,8 @@ class EventsController < ApplicationController
   before_action :require_signin, only: [:index]
 
   def index
-
     @events = current_user.events
-    @event_names = current_user.events.group(:name)
+    @event_names = current_user.events.select(:name).group(:name)
     event_name = params[:event_name]
     @init_date_from = 1.days.ago
     @init_date_to = Date.today
@@ -19,19 +18,12 @@ class EventsController < ApplicationController
     end
 
     unless params[:event_name].nil?
-      @chart = @events.group(:created_on)
+      @chart = @events.select(:created_on).group(:created_on)
                       .where(name: event_name)
                       .where('created_on >= ?', @date_from)
                       .where('created_on <= ?', @date_to)
                       .count
     end
-
-  end
-
-  def render_chart(event_name, from, to)
-    date_from = Date.new(from[:year],from[:month],from[:day])
-    date_to = Date.new(to[:year],to[:month],to[:day])
-    @chart = Event.group(:created_on).where(name: event_name).where('created_on >= ?', date_from).where('created_on <= ?', date_to).count
   end
 
   def new
