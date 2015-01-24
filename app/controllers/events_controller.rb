@@ -5,14 +5,12 @@ class EventsController < ApplicationController
   before_action :require_signin, only: [:index]
 
   def index
+
     @events = current_user.events
     @event_names = current_user.events.group(:name)
-    # from = 15.days.ago
-    # to = Date.today
     event_name = params[:event_name]
     @init_date_from = 1.days.ago
     @init_date_to = Date.today
-
     # binding.pry
 
     unless params[:date_start].nil? && params[:date_end].nil?
@@ -46,7 +44,6 @@ class EventsController < ApplicationController
     user = User.find(domain.user_id)
     @event = user.events.new(event_params)
     properties = params[:event][:properties].map { |k,v| Property.new(key: k, value: v) }
-
     @event.properties = properties
 
     if @event.save
