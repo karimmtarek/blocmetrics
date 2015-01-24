@@ -22,9 +22,9 @@
   %div
     = submit_tag "Update Chart"
 
-= pie_chart Event.group(:name).count
+-# = pie_chart Event.group(:name).count
 
-= line_chart Event.group(:name).group(:created_on).count
+-# = line_chart Event.group(:name).group(:created_on).count
 
 - if params[:event_name].nil?
   = content_tag(:p, "Hello world!")
