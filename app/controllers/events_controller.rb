@@ -41,6 +41,11 @@ class EventsController < ApplicationController
   def create
     # binding.pry
     domain = Domain.find_by(url: params[:event][:source_url])
+
+    if domain.nil?
+      return head :bad_request
+    end
+
     user = User.find(domain.user_id)
     @event = user.events.new(event_params)
     properties = params[:event][:properties].map { |k,v| Property.new(key: k, value: v) }
