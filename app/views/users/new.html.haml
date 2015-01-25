@@ -1,5 +1,10 @@
-= simple_form_for @user do |f|
-  = f.input :email
-  = f.input :password
-  = f.input :password_confirmation
-  = f.button :submit
+.container
+  .row
+    .col-md-4
+      &nbsp;
+    .col-md-4
+      .well
+        %h2 Sign up
+        = render 'form'
+    .col-md-4
+      &nbsp;

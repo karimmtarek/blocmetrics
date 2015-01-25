@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path, notice: 'Thanks for signing up.'
+      redirect_to users_path
     else
       render :new
     end
@@ -34,9 +34,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user, notice: "Account successfully updated."
+      redirect_to dashboard_path
+      # flash[notice] = 'Your password has been changed successfully.'
     else
-      render :edit, alert: "Please try again!"
+      render :edit
     end
   end
 

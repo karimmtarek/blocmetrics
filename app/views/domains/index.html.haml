@@ -1,10 +1,20 @@
-%h1 Domain names
-= link_to "Add New Domain", new_domain_path
-%ul
-- @domains.each do |domain|
-  %li
-    = domain.url
-    |
-    = link_to "Edit", edit_domain_path(domain)
-    |
-    = link_to "Delete", domain_path(domain), method: :delete
+.container.domains
+  .row
+    .col-md-12
+      %h1.page-header
+        Domain names manager
+        = link_to "Add New Domain", new_domain_path, class: 'btn btn-primary pull-right'
+      - if @domains.any?
+        %ul
+        - @domains.each do |domain|
+          %li
+            = domain.url
+            |
+            = link_to "Edit", edit_domain_path(domain)
+            |
+            = link_to "Delete", domain_path(domain), method: :delete
+      - else
+        .alert.alert-info
+          Looks like you didn't create any domains yet, you can start by
+          %strong
+            = link_to "creating your first domain.", new_domain_path

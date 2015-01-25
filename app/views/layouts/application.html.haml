@@ -1,27 +1,17 @@
 !!! 5
 %html
-%head
-  %title Blocmetrics
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  = javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick"
-  = csrf_meta_tags
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
+    %title Blocmetrics
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick"
+    = csrf_meta_tags
 
-%body
-  %p.notice= notice
-  %p.alert= alert
-  %h1= link_to 'Blocmetrics', root_path
-  - if current_user
-    = current_user.email
-    |
-    = link_to 'Setting', edit_user_path(current_user)
-    |
-    = link_to 'Add domain', domains_path
-    |
-    = link_to 'Log Out', session_path, method: :delete
-  - else
-    - if current_page?('/signin')
-      = link_to 'Sign up', new_user_path
-    - else
-      = link_to 'Log In', new_session_path
-= yield
+  %body
+    = render 'layouts/flash'
+    = render 'layouts/nav'
+    = yield
+    = render 'layouts/footer'

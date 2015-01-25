@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @events = current_user.events
     @event_names = current_user.events.select(:name).group(:name)
     event_name = params[:event_name]
-    @init_date_from = 1.days.ago
+    @init_date_from = 7.days.ago
     @init_date_to = Date.today
     # binding.pry
 

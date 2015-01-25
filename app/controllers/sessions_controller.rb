@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
     if user = User.authenticate(params[:email], params[:password])
       session[:user_id] = user.id
       redirect_to dashboard_path
-      flash[:notice] = "Welcome back, #{user.email}!"
     else
       flash.now[:alert] = "Invalid email/password combination!"
       render :new
@@ -17,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "You're signed out."
+    redirect_to signin_path
   end
 
 end

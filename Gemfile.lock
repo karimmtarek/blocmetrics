@@ -290,7 +290,6 @@ DEPENDENCIES
   guard-livereload
   haml
   jbuilder (~> 2.0)
-  jquery-rails
   opal-rails
   pg
   pry-rails

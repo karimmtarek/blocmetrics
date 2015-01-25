@@ -3,4 +3,6 @@
     - @domain.errors.full_messages.each do |error|
       = error
   = f.input :url
-  = f.button :submit
+  .action
+    = f.button :submit, class: "btn btn-primary"
+    = link_to 'Cancel', dashboard_path, class: "btn btn-default"

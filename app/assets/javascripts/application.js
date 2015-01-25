@@ -12,5 +12,6 @@
 //
 //= require opal
 //= require opal_ujs
+//= require bootstrap
 //= require turbolinks
 //= require_tree .

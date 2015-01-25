@@ -1,0 +1,10 @@
+= simple_form_for @user do |f|
+  .form-group
+    = f.input :email, autofocus: true, placeholder: 'Email', class: 'form-control', disabled: disable_email?
+  .form-group
+    = f.input :password, placeholder: 'Password', class: 'form-control'
+  .form-group
+    = f.input :password_confirmation, placeholder: 'Confirm password', class: 'form-control'
+  .action
+    = f.submit submit_text(@user), class: "btn btn-primary"
+    = link_to 'Cancel', dashboard_path, class: "btn btn-default"

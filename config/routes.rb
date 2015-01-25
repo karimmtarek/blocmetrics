@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resource :session
 
   get 'signin' => 'sessions#new', as: 'signin'
+  get 'signup' => 'users#new', as: 'signup'
   get 'dashboard' => 'events#index', as: 'dashboard'
 
 
