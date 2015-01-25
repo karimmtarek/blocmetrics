@@ -1,0 +1,18 @@
+= form_tag(events_path, {method: :get}) do
+  %div
+    = label_tag :event_name
+    = select_tag :event_name, options_from_collection_for_select(@event_names, "name", "name", :selected => params[:event_name]), prompt: "Choose an event", required: true
+  %div
+    = label_tag :date_start, 'Start date'
+    - if params[:date_start].nil?
+      = select_date @init_date_from, prefix: :date_start
+    - else
+      = select_date @date_from, prefix: :date_start
+  %div
+    = label_tag :date_end, 'End date'
+    - if params[:date_end].nil?
+      = select_date @init_date_to, prefix: :date_end
+    - else
+      = select_date @date_to, prefix: :date_end
+  %div
+    = submit_tag "Update Chart"

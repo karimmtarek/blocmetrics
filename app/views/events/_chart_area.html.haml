@@ -1,0 +1,8 @@
+.chart
+  - if params[:event_name].nil?
+    .alert.alert-info
+      %strong Heads up!
+      to create a chart please select an event,start date and end date.
+  - else
+    .well
+      = line_chart @chart
