@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
 
   validates :name, presence: true, length: { minimum: 5 }
 
-  before_create :set_created_on
+ before_create :set_created_on
 
   DATE_RANGE = [
     'Today',

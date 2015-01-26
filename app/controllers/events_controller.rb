@@ -35,6 +35,8 @@ class EventsController < ApplicationController
     domain = Domain.find_by(url: params[:event][:source_url])
 
     if domain.nil?
+      # return render text: "This domain name dose't exist!", status: :bad_request
+      # return head :no_content, :status => :bad_request
       return head :bad_request
     end
 
