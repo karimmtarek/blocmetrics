@@ -1,8 +1,5 @@
 = simple_form_for @domain do |f|
-  - if @domain.errors.any?
-    - @domain.errors.full_messages.each do |error|
-      = error
-  = f.input :url
+  = f.input :url, autofocus: true
   .action
     = f.button :submit, class: "btn btn-primary"
-    = link_to 'Cancel', dashboard_path, class: "btn btn-default"
+    = link_to 'Cancel', domains_path, class: "btn btn-default"

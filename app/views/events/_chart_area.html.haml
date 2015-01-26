@@ -1,5 +1,5 @@
 .chart
-  - if params[:event_name].nil?
+  - if params[:event_name].blank?
     .alert.alert-info
       %strong Heads up!
       to create a chart please select an event,start date and end date.
