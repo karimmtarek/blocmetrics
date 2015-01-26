@@ -37,7 +37,8 @@ class EventsController < ApplicationController
     if domain.nil?
       # return render text: "This domain name dose't exist!", status: :bad_request
       # return head :no_content, :status => :bad_request
-      return head :bad_request
+      return render text: 'Invalid hostname!', content_type: 'text/plain', status: 400
+
     end
 
     user = User.find(domain.user_id)
