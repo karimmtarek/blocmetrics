@@ -4,13 +4,13 @@
     = select_tag :event_name, options_from_collection_for_select(@event_names, "name", "name", :selected => params[:event_name]), prompt: "Choose an event", required: true
   %div
     = label_tag :date_start, 'Start date'
-    - if params[:date_start].nil?
+    - if params[:date_start].blank?
       = select_date @init_date_from, prefix: :date_start
     - else
       = select_date @date_from, prefix: :date_start
   %div
     = label_tag :date_end, 'End date'
-    - if params[:date_end].nil?
+    - if params[:date_end].blank?
       = select_date @init_date_to, prefix: :date_end
     - else
       = select_date @date_to, prefix: :date_end

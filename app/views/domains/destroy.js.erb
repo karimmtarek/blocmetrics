@@ -1,0 +1,11 @@
+var infoBox = '<div class="alert alert-info" style="display:none">Looks like you didn\'t create any domains yet, you can start by <strong><a href="/domains/new">creating your first domain.</a></strong></div>'
+<% if @domain.destroyed? %>
+  $("#domain-<%= @domain.id %>").fadeOut('slow', function(){
+    $(this).remove();
+    <% if @domains.blank? %>
+      $('.domains .col-md-12').append(infoBox);
+      $('.domains .alert').fadeIn();
+    <% end %>
+  });
+
+<% end %>

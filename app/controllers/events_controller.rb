@@ -10,14 +10,13 @@ class EventsController < ApplicationController
     event_name = params[:event_name]
     @init_date_from = 7.days.ago
     @init_date_to = Date.today
-    # binding.pry
 
-    unless params[:date_start].nil? && params[:date_end].nil?
+    unless params[:date_start].blank? && params[:date_end].blank?
       @date_from = Date.new(params[:date_start][:year].to_i, params[:date_start][:month].to_i, params[:date_start][:day].to_i)
       @date_to = Date.new(params[:date_end][:year].to_i, params[:date_end][:month].to_i, params[:date_end][:day].to_i)
     end
 
-    unless params[:event_name].nil?
+    unless params[:event_name].blank?
       @chart = @events.select(:created_on).group(:created_on)
                       .where(name: event_name)
                       .where('created_on >= ?', @date_from)
@@ -31,14 +30,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    # binding.pry
     domain = Domain.find_by(url: params[:event][:source_url])
 
-    if domain.nil?
-      # return render text: "This domain name dose't exist!", status: :bad_request
-      # return head :no_content, :status => :bad_request
-      return render text: 'Invalid hostname!', content_type: 'text/plain', status: 400
-
+    if domain.blank?
+      return render text: "This domain name doesn't exist!", status: :bad_request
     end
 
     user = User.find(domain.user_id)
@@ -48,12 +43,10 @@ class EventsController < ApplicationController
 
     if @event.save
       head :created
-      # render :json => @event, :status => :created
     else
       render :json => @event.errors, :status => :bad_request
     end
   end
-
 
 private
 

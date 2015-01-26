@@ -5,14 +5,13 @@
         Domain names manager
         = link_to "Add New Domain", new_domain_path, class: 'btn btn-primary pull-right'
       - if @domains.any?
-        %ul
         - @domains.each do |domain|
-          %li
+          %h3(id="domain-#{domain.id}")
             = domain.url
             |
             = link_to "Edit", edit_domain_path(domain)
             |
-            = link_to "Delete", domain_path(domain), method: :delete
+            = link_to "Delete", domain_path(domain), method: :delete, remote: true, data: {confirm: 'Are you sure?'}
       - else
         .alert.alert-info
           Looks like you didn't create any domains yet, you can start by
