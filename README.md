@@ -1,28 +1,10 @@
-== README
+# Blocmetrics
+Basic API Tracking Service and Reporting Tool.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Use case
+- a client-side Javascript snippet that allows a user track events on their website
+- a server-side API that captures and saves those events to a database
+- a Rails application that displays the captured event data for a user.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Demo
+Demo application can be found [there](https://blocmetricz.herokuapp.com/).
